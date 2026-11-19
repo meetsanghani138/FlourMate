@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Motorcycle Body (Dark Brown / Amber) -->
+    <path
+        android:fillColor="#E68A00"
+        android:pathData="M12,32 A6,6 0 1,0 12,44 A6,6 0 1,0 12,32 Z M36,32 A6,6 0 1,0 36,44 A6,6 0 1,0 36,32 Z M12,38 L22,26 H32 L38,34 H12 Z" />
+
+    <!-- Flour Bag on Delivery Box (Back of Bike) -->
+    <path
+        android:fillColor="#4A2105"
+        android:pathData="M14,18 H26 V28 H14 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M16,14 C16,10 24,10 24,14 Z" />
+
+    <!-- Handlebar & Details -->
+    <path
+        android:fillColor="#3D1B04"
+        android:pathData="M30,22 L36,16 H40"
+        android:strokeWidth="3"
+        android:strokeColor="#3D1B04"
+        android:strokeLineCap="round" />
+
+</vector>

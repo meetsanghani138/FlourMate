@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Colors -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Exact Brand Color Palette -->
+    <color name="primary">#0D631B</color>
+    <color name="primary_green">#0D631B</color>
+    <color name="primary_dark">#145A1F</color>
+    <color name="dark_green">#145A1F</color>
+    <color name="secondary">#2E7D32</color>
+    <color name="secondary_green">#2E7D32</color>
+    <color name="accent_green">#2E7D32</color>
+    <color name="light_green">#A3F69C</color>
+
+    <!-- Flour / Wheat Accent Colors -->
+    <color name="wheat_gold">#FBC02D</color>
+    <color name="light_gold">#FFF3C4</color>
+    <color name="brown">#704D40</color>
+
+    <!-- Backgrounds & Surfaces (Cream & White) -->
+    <color name="background">#FAF8F3</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="light_surface">#F5F2EB</color>
+    <color name="bg_cream">#FAF8F3</color>
+    <color name="surface_glass">#FAF8F3</color>
+
+    <!-- Typography / Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="main_text">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="secondary_text">#757575</color>
+    <color name="text_dark">#212121</color>
+    <color name="text_muted">#757575</color>
+    <color name="text_hint">#9E9E9E</color>
+
+    <!-- Navigation & Glass Colors -->
+    <color name="icon_active">#0D631B</color>
+    <color name="icon_inactive">#757575</color>
+    <color name="nav_glass_bg">#FAF8F3</color>
+    <color name="nav_glass_border">#E8E5DC</color>
+    <color name="nav_active_highlight">#A3F69C</color>
+
+    <color name="glass_background">#FAF8F3</color>
+    <color name="glass_border">#E8E5DC</color>
+    <color name="glass_selected">#A3F69C</color>
+
+    <color name="nav_icon_active">#0D631B</color>
+    <color name="nav_icon_inactive">#757575</color>
+
+    <!-- Outlines & Dividers -->
+    <color name="outline">#E8E5DC</color>
+    <color name="light_outline">#E8E5DC</color>
+    <color name="divider">#E8E5DC</color>
+    <color name="divider_color">#E8E5DC</color>
+
+    <!-- Status Colors -->
+    <color name="status_pending">#FBC02D</color>
+    <color name="status_confirmed">#2E7D32</color>
+    <color name="status_processing">#1976D2</color>
+    <color name="status_shipped">#6A1B9A</color>
+    <color name="status_out_for_delivery">#EF6C00</color>
+    <color name="status_delivered">#388E3C</color>
+    <color name="status_completed">#2E7D32</color>
+    <color name="status_cancelled">#BA1A1A</color>
+
+    <!-- Common UI Component Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="input_background">#FFFFFF</color>
+    <color name="disabled">#BDBDBD</color>
+    <color name="shadow">#0D000000</color>
+
+    <!-- Error / Warning / Success / Info -->
+    <color name="error">#BA1A1A</color>
+    <color name="warning">#F57C00</color>
+    <color name="success">#2E7D32</color>
+    <color name="info">#1976D2</color>
+</resources>
