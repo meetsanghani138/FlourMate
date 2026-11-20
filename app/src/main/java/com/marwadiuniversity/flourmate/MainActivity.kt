@@ -638,6 +638,8 @@ class MainActivity : AppCompatActivity() {
         mainContainer.addView(view)
 
         val btnBack = view.findViewById<ImageView>(R.id.btnBack)
+        val llEmptyCart = view.findViewById<LinearLayout>(R.id.llEmptyCart)
+        val cvSummary = view.findViewById<MaterialCardView>(R.id.cvSummary)
         val recyclerCart = view.findViewById<RecyclerView>(R.id.recyclerCart)
         val tvTotal = view.findViewById<TextView>(R.id.tvTotal)
         val btnCheckout = view.findViewById<MaterialButton>(R.id.btnProceed)
@@ -653,15 +655,24 @@ class MainActivity : AppCompatActivity() {
             val deliveryFee = if (items.isEmpty()) 0.0 else 30.0
             val total = subtotal + deliveryFee
 
-            tvTotal.text = "₹${"%.2f".format(total)}"
+            tvTotal?.text = "₹${"%.2f".format(total)}"
         }
 
         fun loadCartItems() {
             CoroutineScope(Dispatchers.IO).launch {
                 val items = productRepository.getCartItems(userId)
                 withContext(Dispatchers.Main) {
-                    cartAdapter?.updateItems(items)
-                    calculateTotals(items)
+                    if (items.isEmpty()) {
+                        recyclerCart?.visibility = View.GONE
+                        cvSummary?.visibility = View.GONE
+                        llEmptyCart?.visibility = View.VISIBLE
+                    } else {
+                        recyclerCart?.visibility = View.VISIBLE
+                        cvSummary?.visibility = View.VISIBLE
+                        llEmptyCart?.visibility = View.GONE
+                        cartAdapter?.updateItems(items)
+                        calculateTotals(items)
+                    }
                 }
             }
         }
@@ -1415,6 +1426,48 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnManageShopPhotos.setOnClickListener { navigateTo(Screen.ManageShopPhotos) }
+
+        val btnDeveloperCredit = view.findViewById<MaterialButton>(R.id.btnDeveloperCredit)
+        btnDeveloperCredit?.setOnClickListener {
+            val logo = ImageView(this).apply {
+                setImageResource(R.drawable.ic_flourmate_logo)
+                layoutParams = LinearLayout.LayoutParams(120, 120).apply {
+                    gravity = android.view.Gravity.CENTER
+                    bottomMargin = 24
+                }
+            }
+
+            val tvTitle = TextView(this).apply {
+                text = "Developer Details 👨‍💻"
+                textSize = 18f
+                setTypeface(null, android.graphics.Typeface.BOLD)
+                setTextColor(getColor(R.color.primary_green))
+                gravity = android.view.Gravity.CENTER
+                setPadding(0, 0, 0, 16)
+            }
+
+            val tvDetails = TextView(this).apply {
+                text = "👨‍💻 Developer Name: Meet Sanghani\n\n👨‍🏫 Guided By: Prof. Jigar Dave\n\n🏫 University: Marwadi University"
+                textSize = 14f
+                setTextColor(getColor(R.color.main_text))
+                setPadding(16, 0, 16, 16)
+                setLineSpacing(8f, 1f)
+            }
+
+            val container = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(48, 36, 48, 24)
+                addView(logo)
+                addView(tvTitle)
+                addView(tvDetails)
+            }
+
+            AlertDialog.Builder(this)
+                .setView(container)
+                .setPositiveButton("Close", null)
+                .show()
+        }
+
         btnLogout.setOnClickListener {
             sessionManager.logout()
             navigateTo(Screen.Login, clearStack = true)
@@ -1628,10 +1681,8 @@ class MainActivity : AppCompatActivity() {
         val view = inflater.inflate(R.layout.activity_delivery_earnings, mainContainer, false)
         mainContainer.addView(view)
 
-        val btnBack = view.findViewById<ImageView>(R.id.btnBack)
         val bottomNavigationDelivery = view.findViewById<BottomNavigationView>(R.id.bottomNavigationDelivery)
 
-        btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setupDeliveryBottomNav(bottomNavigationDelivery, R.id.nav_delivery_earnings)
     }
 
@@ -1689,44 +1740,56 @@ class MainActivity : AppCompatActivity() {
     // ==========================================
     // BOTTOM NAVIGATION HELPERS
     // ==========================================
-    private fun setupCustomerBottomNav(nav: BottomNavigationView, selectedId: Int) {
+    private fun setupCustomerBottomNav(nav: BottomNavigationView?, selectedId: Int) {
+        if (nav == null) return
+        nav.setOnItemSelectedListener(null)
         nav.selectedItemId = selectedId
         nav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> { navigateTo(Screen.CustomerHome, clearStack = true); true }
-                R.id.nav_mills -> { navigateTo(Screen.Mills); true }
-                R.id.nav_orders -> { navigateTo(Screen.Orders); true }
-                R.id.nav_cart -> { navigateTo(Screen.Cart); true }
-                R.id.nav_profile -> { navigateTo(Screen.CustomerProfile); true }
-                else -> false
+            if (selectedId != item.itemId) {
+                when (item.itemId) {
+                    R.id.nav_home -> navigateTo(Screen.CustomerHome, clearStack = true)
+                    R.id.nav_mills -> navigateTo(Screen.Mills)
+                    R.id.nav_orders -> navigateTo(Screen.Orders)
+                    R.id.nav_cart -> navigateTo(Screen.Cart)
+                    R.id.nav_profile -> navigateTo(Screen.CustomerProfile)
+                }
             }
+            true
         }
     }
 
-    private fun setupMillOwnerBottomNav(nav: BottomNavigationView, selectedId: Int) {
+    private fun setupMillOwnerBottomNav(nav: BottomNavigationView?, selectedId: Int) {
+        if (nav == null) return
+        nav.setOnItemSelectedListener(null)
         nav.selectedItemId = selectedId
         nav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_dashboard -> { navigateTo(Screen.MillOwnerDashboard, clearStack = true); true }
-                R.id.nav_manage_orders -> { navigateTo(Screen.ManageOrders); true }
-                R.id.nav_manage_products -> { navigateTo(Screen.ManageProducts); true }
-                R.id.nav_earnings -> { navigateTo(Screen.Earnings); true }
-                R.id.nav_mill_profile -> { navigateTo(Screen.MillOwnerProfile); true }
-                else -> false
+            if (selectedId != item.itemId) {
+                when (item.itemId) {
+                    R.id.nav_dashboard -> navigateTo(Screen.MillOwnerDashboard, clearStack = true)
+                    R.id.nav_manage_orders -> navigateTo(Screen.ManageOrders)
+                    R.id.nav_manage_products -> navigateTo(Screen.ManageProducts)
+                    R.id.nav_earnings -> navigateTo(Screen.Earnings)
+                    R.id.nav_mill_profile -> navigateTo(Screen.MillOwnerProfile)
+                }
             }
+            true
         }
     }
 
-    private fun setupDeliveryBottomNav(nav: BottomNavigationView, selectedId: Int) {
+    private fun setupDeliveryBottomNav(nav: BottomNavigationView?, selectedId: Int) {
+        if (nav == null) return
+        nav.setOnItemSelectedListener(null)
         nav.selectedItemId = selectedId
         nav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_delivery_home -> { navigateTo(Screen.DeliveryHome, clearStack = true); true }
-                R.id.nav_delivery_orders -> { navigateTo(Screen.DeliveryOrders); true }
-                R.id.nav_delivery_earnings -> { navigateTo(Screen.DeliveryEarnings); true }
-                R.id.nav_delivery_profile -> { navigateTo(Screen.DeliveryProfile); true }
-                else -> false
+            if (selectedId != item.itemId) {
+                when (item.itemId) {
+                    R.id.nav_delivery_home -> navigateTo(Screen.DeliveryHome, clearStack = true)
+                    R.id.nav_delivery_orders -> navigateTo(Screen.DeliveryOrders)
+                    R.id.nav_delivery_earnings -> navigateTo(Screen.DeliveryEarnings)
+                    R.id.nav_delivery_profile -> navigateTo(Screen.DeliveryProfile)
+                }
             }
+            true
         }
     }
 
