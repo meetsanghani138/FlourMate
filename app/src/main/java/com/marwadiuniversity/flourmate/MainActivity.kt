@@ -1006,6 +1006,47 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
+        val llDeveloperCredit = view.findViewById<LinearLayout>(R.id.llDeveloperCredit)
+        llDeveloperCredit?.setOnClickListener {
+            val logo = ImageView(this).apply {
+                setImageResource(R.drawable.ic_flourmate_logo)
+                layoutParams = LinearLayout.LayoutParams(120, 120).apply {
+                    gravity = android.view.Gravity.CENTER
+                    bottomMargin = 24
+                }
+            }
+
+            val tvTitle = TextView(this).apply {
+                text = "Developer Credit"
+                textSize = 18f
+                setTypeface(null, android.graphics.Typeface.BOLD)
+                setTextColor(getColor(R.color.primary_green))
+                gravity = android.view.Gravity.CENTER
+                setPadding(0, 0, 0, 16)
+            }
+
+            val tvText = TextView(this).apply {
+                text = "Developed by Meet Sanghani"
+                textSize = 15f
+                setTextColor(getColor(R.color.main_text))
+                gravity = android.view.Gravity.CENTER
+                setPadding(16, 0, 16, 16)
+            }
+
+            val container = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(48, 36, 48, 24)
+                addView(logo)
+                addView(tvTitle)
+                addView(tvText)
+            }
+
+            AlertDialog.Builder(this)
+                .setView(container)
+                .setPositiveButton("Close", null)
+                .show()
+        }
+
         llLogout.setOnClickListener {
             sessionManager.logout()
             navigateTo(Screen.Login, clearStack = true)
@@ -1662,6 +1703,47 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 .setNegativeButton("Cancel", null)
+                .show()
+        }
+
+        val btnDeveloperCredit = view.findViewById<MaterialButton>(R.id.btnDeveloperCredit)
+        btnDeveloperCredit?.setOnClickListener {
+            val logo = ImageView(this).apply {
+                setImageResource(R.drawable.ic_flourmate_logo)
+                layoutParams = LinearLayout.LayoutParams(120, 120).apply {
+                    gravity = android.view.Gravity.CENTER
+                    bottomMargin = 24
+                }
+            }
+
+            val tvTitle = TextView(this).apply {
+                text = "Developer Credit"
+                textSize = 18f
+                setTypeface(null, android.graphics.Typeface.BOLD)
+                setTextColor(getColor(R.color.primary_green))
+                gravity = android.view.Gravity.CENTER
+                setPadding(0, 0, 0, 16)
+            }
+
+            val tvText = TextView(this).apply {
+                text = "Developed by Meet Sanghani"
+                textSize = 15f
+                setTextColor(getColor(R.color.main_text))
+                gravity = android.view.Gravity.CENTER
+                setPadding(16, 0, 16, 16)
+            }
+
+            val container = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(48, 36, 48, 24)
+                addView(logo)
+                addView(tvTitle)
+                addView(tvText)
+            }
+
+            AlertDialog.Builder(this)
+                .setView(container)
+                .setPositiveButton("Close", null)
                 .show()
         }
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_cream"
     android:fitsSystemWindows="true"
-    tools:context=".CustomerProfileActivity">
+    tools:context=".MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -144,92 +144,6 @@
                         android:layout_marginHorizontal="16dp"
                         android:background="@color/divider" />
 
-                    <!-- My Orders Row -->
-                    <LinearLayout
-                        android:id="@+id/llMyOrders"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="16dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:contentDescription="Orders Icon"
-                            android:src="@drawable/ic_orders"
-                            app:tint="@color/primary_green" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="1"
-                            android:text="My Orders"
-                            android:textColor="@color/main_text"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:contentDescription="Arrow"
-                            android:src="@drawable/ic_arrow_right"
-                            app:tint="@color/text_secondary" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:background="@color/divider" />
-
-                    <!-- Saved Addresses Row -->
-                    <LinearLayout
-                        android:id="@+id/llAddresses"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="16dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:contentDescription="Location Icon"
-                            android:src="@drawable/ic_location"
-                            app:tint="@color/primary_green" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="1"
-                            android:text="Saved Delivery Address"
-                            android:textColor="@color/main_text"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:contentDescription="Arrow"
-                            android:src="@drawable/ic_arrow_right"
-                            app:tint="@color/text_secondary" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:background="@color/divider" />
-
                     <!-- Notifications Settings Row -->
                     <LinearLayout
                         android:id="@+id/llNotifications"
@@ -256,6 +170,49 @@
                             android:layout_weight="1"
                             android:text="Notifications"
                             android:textColor="@color/main_text"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="Arrow"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="@color/text_secondary" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="@color/divider" />
+
+                    <!-- Developer Credit Row (Immediately ABOVE Logout) -->
+                    <LinearLayout
+                        android:id="@+id/llDeveloperCredit"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:contentDescription="Developer Credit Icon"
+                            android:src="@drawable/ic_flourmate_logo"
+                            app:tint="@color/primary_green" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:text="Developer Credit 👨‍💻"
+                            android:textColor="@color/primary_green"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
