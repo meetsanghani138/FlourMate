@@ -603,10 +603,11 @@ class MainActivity : AppCompatActivity() {
         mainContainer.addView(view)
 
         val btnBack = view.findViewById<ImageView>(R.id.btnBack)
+        val btnCart = view.findViewById<ImageView>(R.id.btnCart)
         val recyclerProducts = view.findViewById<RecyclerView>(R.id.recyclerProducts)
-        val bottomNavigation = view.findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
-        btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        btnBack?.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        btnCart?.setOnClickListener { navigateTo(Screen.Cart) }
         recyclerProducts.layoutManager = GridLayoutManager(this, 2)
 
         val productAdapter = ProductAdapter(emptyList(), onAddToCartClick = { product ->
@@ -619,7 +620,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
         recyclerProducts.adapter = productAdapter
-        setupCustomerBottomNav(bottomNavigation, R.id.nav_home)
 
         CoroutineScope(Dispatchers.IO).launch {
             val all = productRepository.getAllProducts()
@@ -891,11 +891,11 @@ class MainActivity : AppCompatActivity() {
         val view = inflater.inflate(R.layout.activity_order_details, mainContainer, false)
         mainContainer.addView(view)
 
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        val btnBack = view.findViewById<ImageView>(R.id.btnBack)
         val tvOrderHeaderId = view.findViewById<TextView>(R.id.tvOrderHeaderId)
         val tvDeliveryAddress = view.findViewById<TextView>(R.id.tvDeliveryAddress)
 
-        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        btnBack?.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         CoroutineScope(Dispatchers.IO).launch {
             val order = orderRepository.getOrderById(orderId)
